@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="STRAYS.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:STRAYS.Views">
+
+    <ShellContent ContentTemplate="{DataTemplate views:CargaPage}" />
+    
+    <FlyoutItem Title="Registros de PAE"
+                Icon="dogP.png"
+                >
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:PaePage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Encuentros"
+                Icon="infoP.png">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:InfoPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Alertas"
+                Icon="alertaP.png">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:AlertaPage}" />
+        </Tab>
+    </FlyoutItem>
+</Shell>

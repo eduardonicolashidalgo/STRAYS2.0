@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="STRAYS.Views.PaeRegistroPage"
+             Title="PaeRegistroPage"
+             Shell.NavBarIsVisible="false"
+             xmlns:models="clr-namespace:STRAYS.Models">
+    
+    <ScrollView>
+        <Grid RowDefinitions="50,*">
+            <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*">
+                <BoxView Color="{StaticResource colorPrincipal}" Grid.ColumnSpan="7" CornerRadius="0,0,10,10"/>
+                <ImageButton 
+                        Grid.Column="0"
+                        Source="dog.png"
+                        Clicked="GoToPaePage"
+                        Style="{StaticResource iconosTabBar}"/>
+                <ImageButton 
+                        Grid.Column="6" 
+                        Source="atras.png"
+                        Clicked="GoToPaePage"
+                        Style="{StaticResource iconosTabBar}"/>
+            </Grid>
+            <VerticalStackLayout Grid.Column="0" Grid.Row="1">
+                <Label
+                        Style="{StaticResource titulos}"
+                        Text="Registrar nuevo animalito"/>
+                <Grid ColumnDefinitions="*,3*" RowDefinitions="45,45,45,45,45" Padding="15" RowSpacing="10">
+                    <Label 
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Nombre:"
+                            />
+                    <Label 
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Sexo:"
+                            />
+                    <Label 
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Edad:"
+                            />
+                    <Label 
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Raza:"
+                            />
+                    <Label 
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Tamaño:"
+                            />
+                    <Entry  
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            x:Name="txtNombre"
+                            Placeholder="Nombre del animalito"
+                            HeightRequest="50" 
+                            MaxLength="30"
+                            Text="{Binding Nombre}"/>
+                    
+                    <Entry 
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            x:Name="txtSexo"
+                            Placeholder="Femenino o Masculino"
+                            HeightRequest="50" 
+                            MaxLength="10"
+                            Text="{Binding Sexo}"
+                            />
+                    <Entry 
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            x:Name="txtEdad"
+                            Placeholder="Edad en meses"
+                            HeightRequest="50" 
+                            MaxLength="3"
+                            Text="{Binding Edad}"
+                            />
+                    <Entry 
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            x:Name="txtRaza"
+                            Placeholder="Raza del animalito"
+                            HeightRequest="50" 
+                            MaxLength="30"
+                            Text="{Binding Raza}"
+                            />
+                    <Entry 
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            x:Name="txtTamano"
+                            Placeholder="Pequeño, Mediano o Grande"
+                            HeightRequest="50" 
+                            MaxLength="7"
+                            Text="{Binding Tamano}"
+                            />
+                </Grid>
+                <Label
+                        Style="{StaticResource textoCuerpo}"
+                        Padding="15"
+                        Text="Descripción:"/>
+                <Grid ColumnDefinitions="15,*,15" RowDefinitions="100">
+                    <Editor 
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        x:Name="txtDescripcion"
+                        Placeholder="Introduzca una descripción del animalito (máx. 200 caracteres)"
+                        HeightRequest="100" 
+                        MaxLength="200"
+                        IsSpellCheckEnabled="False"
+                        Text="{Binding Descripcion}"
+                        />
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="60,60" Padding="15">
+                    <Button     
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Text="Registrar con Imagen"
+                            Style="{StaticResource botonSecundario}" 
+                            WidthRequest="180"
+                            FontSize="14"
+                            Clicked="PickAndShow"
+                             />
+                    <Button     
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Text="Registrar"
+                            Style="{StaticResource botonPrimario}" 
+                            WidthRequest="150"
+                            FontSize="14"
+                            Clicked="SaveButton_Clicked"
+                             />
+                    <Button     
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Text="Eliminar"
+                            BackgroundColor="{StaticResource colorAlerta}"
+                            Style="{StaticResource botonPrimario}" 
+                            WidthRequest="150"
+                            FontSize="14"
+                            Clicked="DeleteButton_Clicked"
+                             />
+                </Grid>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

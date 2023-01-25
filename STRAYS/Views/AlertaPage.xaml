@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="STRAYS.Views.AlertaPage"
+             Title="AlertaPage"
+             Shell.NavBarIsVisible="false">
+
+    <ScrollView>
+        <Grid RowDefinitions="50,*">
+            <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*">
+                <BoxView Color="{StaticResource colorPrincipal}" Grid.ColumnSpan="7" CornerRadius="0,0,10,10"/>
+                <ImageButton 
+                    Grid.Column="0" 
+                    Source="burgermenu.png"
+                    Clicked="AbrirFlyout"
+                    Style="{StaticResource iconosTabBar}"
+                    Margin="10"/>
+                <ImageButton 
+                    Grid.Column="1" 
+                    Source="dog.png"
+                    Clicked="GoToPaePage"
+                    Style="{StaticResource iconosTabBar}"/>
+                <ImageButton 
+                    Grid.Column="5" 
+                    Source="info.png"
+                    Clicked="GoToInfoPage"
+                    Style="{StaticResource iconosTabBar}"/>
+                <ImageButton 
+                    Grid.Column="6" 
+                    Source="alerta.png"
+                    Clicked="GoToAlertaPage"
+                    Style="{StaticResource iconosTabBar}"/>
+            </Grid>
+            <VerticalStackLayout Grid.Column="0" Grid.Row="1">
+                <BoxView Color="White" HeightRequest="10"/>
+                <Button     
+                    Text="Ingresar alerta"
+                    Style="{StaticResource botonPrimario}" 
+                    WidthRequest="160"
+                    FontSize="14"
+                    Clicked="GoToAlertaRegistroPage"/>
+                <!-- Display notes in a list -->
+                <CollectionView x:Name="notesCollection"
+                            ItemsSource="{Binding Notes}"
+                            Margin="20"
+                            SelectionMode="Single"
+                            SelectionChanged="notesCollection_SelectionChanged">
+
+                    <!-- Designate how the collection of items are laid out -->
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="30" />
+                    </CollectionView.ItemsLayout>
+
+                    <!-- Define the appearance of each item in the list -->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Image x:Name="imagen" Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="250"/>
+                                <BoxView Color="White" HeightRequest="10"/>
+                                <StackLayout Spacing="5">
+                                    <Label 
+                                            Text="{Binding Titulo}"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            FontSize="30"
+                                            FontFamily="Bold"
+                                            Style="{StaticResource titulos}"
+                                            Padding="0"/>
+                                    <Label 
+                                            Text="{Binding Date}"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="Start"
+                                            FontFamily="Roboto-Light"
+                                            FontSize="10"
+                                            Style="{StaticResource textoCuerpo}"/>
+
+                                    <HorizontalStackLayout>
+                                        <Label Text="Sexo:" Style="{StaticResource textoCuerpoTags}"/>
+                                        <Label 
+                                            Text="{Binding Sexo}"
+                                            Style="{StaticResource textoCuerpo}"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="Raza:" Style="{StaticResource textoCuerpoTags}"/>
+                                        <Label 
+                                            Text="{Binding Raza}"
+                                            Style="{StaticResource textoCuerpo}"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="Ubicación:" Style="{StaticResource textoCuerpoTags}"/>
+                                        <Label 
+                                            Text="{Binding Ubicacion}"
+                                            Style="{StaticResource textoCuerpo}"/>
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                                <BoxView Color="White" HeightRequest="5"/>
+                                <Label Text="Descripción:" Style="{StaticResource textoCuerpoTags}"/>
+                                <Label Text="{Binding Descripcion}" Style="{StaticResource textoCuerpo}"/>
+                                <BoxView Color="White" HeightRequest="10"/>
+                                <BoxView Color="#808080" HeightRequest="1"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
