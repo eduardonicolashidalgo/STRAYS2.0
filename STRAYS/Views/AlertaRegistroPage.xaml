@@ -102,34 +102,26 @@
                         />
                 </Grid>
 
-                <Grid ColumnDefinitions="*,*" RowDefinitions="60,60" Padding="15">
-                    <Button     
+                <Grid ColumnDefinitions="60,*,60" RowDefinitions="60" Padding="15">
+                    <ImageButton     
                             Grid.Column="0"
                             Grid.Row="0"
-                            Text="Ingresar con Imagen"
-                            Style="{StaticResource botonSecundario}" 
-                            WidthRequest="180"
-                            FontSize="14"
+                            Style="{StaticResource botonGuardarImagen}" 
                             Clicked="PickAndShow"
                              />
                     <Button     
                             Grid.Column="1"
                             Grid.Row="0"
-                            Text="Ingresar"
-                            Style="{StaticResource botonPrimario}" 
+                            Text="Guardar"
+                            Style="{StaticResource botonSecundario}" 
                             WidthRequest="150"
                             FontSize="14"
                             Clicked="SaveButton_Clicked"
                              />
-                    <Button     
-                            Grid.Column="0"
-                            Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            Text="Eliminar"
-                            BackgroundColor="{StaticResource colorAlerta}"
-                            Style="{StaticResource botonPrimario}" 
-                            WidthRequest="150"
-                            FontSize="14"
+                    <ImageButton     
+                            Grid.Column="2"
+                            Grid.Row="0"
+                            Style="{StaticResource botonEliminar}" 
                             Clicked="DeleteButton_Clicked"
                              />
                 </Grid>

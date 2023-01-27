@@ -31,7 +31,7 @@ namespace STRAYS.Data
                 int result = conn.Insert(pae);
                 return result;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return 404;
             }
@@ -45,7 +45,7 @@ namespace STRAYS.Data
                 int result = conn.Insert(alerta);
                 return result;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return 404;
             }
@@ -59,7 +59,7 @@ namespace STRAYS.Data
                 int result = conn.Insert(info);
                 return result;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return 404;
             }
@@ -158,7 +158,7 @@ namespace STRAYS.Data
             string raza,
             string tam,
             string des,
-            string url)
+            byte[] img)
         {
             Init();
             var actualizada = conn.Table<PaeModel>().Where(r => r.IdPae == id).FirstOrDefault();
@@ -171,7 +171,7 @@ namespace STRAYS.Data
                 actualizada.Raza = raza;
                 actualizada.Tamano = tam;
                 actualizada.Descripcion = des;
-                actualizada.urlImagen = url;
+                actualizada.Imagen = img;
                 actualizada.Date = DateTime.Now;
 
                 // Submit the changes to the database
@@ -186,7 +186,7 @@ namespace STRAYS.Data
             string raza,
             string ubi,
             string des,
-            string url)
+            byte[] img)
         {
             Init();
             var actualizada = conn.Table<AlertaModel>().Where(r => r.IdAlerta == id).FirstOrDefault();
@@ -198,7 +198,7 @@ namespace STRAYS.Data
                 actualizada.Raza = raza;
                 actualizada.Ubicacion = ubi;
                 actualizada.Descripcion = des;
-                actualizada.urlImagen = url;
+                actualizada.Imagen = img;
                 actualizada.Date = DateTime.Now;
 
                 // Submit the changes to the database
@@ -213,7 +213,7 @@ namespace STRAYS.Data
             string raza,
             string ubi,
             string des,
-            string url)
+            byte[] img)
         {
             Init();
             var actualizada = conn.Table<InfoModel>().Where(r => r.IdInfo == id).FirstOrDefault();
@@ -225,7 +225,7 @@ namespace STRAYS.Data
                 actualizada.Raza = raza;
                 actualizada.Ubicacion = ubi;
                 actualizada.Descripcion = des;
-                actualizada.urlImagen = url;
+                actualizada.Imagen = img;
                 actualizada.Date = DateTime.Now;
 
                 // Submit the changes to the database
@@ -233,8 +233,8 @@ namespace STRAYS.Data
             }
         }
 
-        //------------------------------------------------------ ACTUALIZAR ---------------------------------------------------------------------
-        public void eliminarBurger(int id, string tabla)
+        //------------------------------------------------------ ELIMINAR ---------------------------------------------------------------------
+        public void eliminar(int id, string tabla)
         {
             switch(tabla)
             {
@@ -242,18 +242,34 @@ namespace STRAYS.Data
                     var mascotaEliminada = conn.Table<PaeModel>().Where(r => r.IdPae == id).FirstOrDefault();
                     if (mascotaEliminada != null)
                     {
-                        conn.Delete(burgerEliminada);
+                        conn.Delete(mascotaEliminada);
                     }
-
+                    break;
+                case "alerta":
+                    var mascotaEliminada2 = conn.Table<AlertaModel>().Where(r => r.IdAlerta == id).FirstOrDefault();
+                    if (mascotaEliminada2 != null)
+                    {
+                        conn.Delete(mascotaEliminada2);
+                    }
+                    break;
+                case "info":
+                    var mascotaEliminada3 = conn.Table<InfoModel>().Where(r => r.IdInfo == id).FirstOrDefault();
+                    if (mascotaEliminada3 != null)
+                    {
+                        conn.Delete(mascotaEliminada3);
+                    }
+                    break;
+                default:
+                    throw new Exception("Nombre de tabla inválido");
             }
             
         }
 
-        public void purgarBurger()
+        /*public void purgarBurger()
         {
             conn.DeleteAll<BurgerJM>();
             conn.Execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'burger'");
-        }
+        }*/
     }
 }
 

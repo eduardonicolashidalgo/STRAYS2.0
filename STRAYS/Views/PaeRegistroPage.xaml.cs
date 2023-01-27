@@ -1,22 +1,24 @@
 using Microsoft.Maui.Storage;
+using static CoreMedia.CMTime;
+using System.Runtime.Intrinsics.X86;
+using STRAYS.Models;
 
 namespace STRAYS.Views;
 
 [QueryProperty(nameof(ItemId), nameof(ItemId))]
 public partial class PaeRegistroPage : ContentPage
 {
-    public string ItemId
+    PaeModel Item = new PaeModel();
+    PaeModel aux = new PaeModel();
+
+    public int ItemId
     {
-        set { LoadNote(value); }
+        set { cargarMascota(value); }
     }
 
     public PaeRegistroPage()
 	{
 		InitializeComponent();
-        string appDataPath = FileSystem.AppDataDirectory;
-        appDataPath = Path.Combine(appDataPath, "PAE");
-        string randomFileName = $"{Path.GetRandomFileName()}.notes.txt";
-        LoadNote(Path.Combine(appDataPath, randomFileName));
     }
 
 	private void GoToPaePage(object sender, EventArgs e)
@@ -24,7 +26,7 @@ public partial class PaeRegistroPage : ContentPage
         Shell.Current.GoToAsync(nameof(PaePage));
     }
 
-    private async void SaveButton_Clicked(object sender, EventArgs e)
+    /*private async void SaveButton_Clicked(object sender, EventArgs e)
     {
         if(string.IsNullOrEmpty(txtNombre.Text) ||
             string.IsNullOrEmpty(txtSexo.Text) ||
@@ -51,7 +53,7 @@ public partial class PaeRegistroPage : ContentPage
             }
             await Shell.Current.GoToAsync("..");
         }
-    }
+    }*/
 
     private async void DeleteButton_Clicked(object sender, EventArgs e)
     {
@@ -65,7 +67,7 @@ public partial class PaeRegistroPage : ContentPage
         await Shell.Current.GoToAsync("..");
     }
 
-    private void LoadNote(string fileName)
+    private void cargarMascota(int id)
     {
         Models.Note noteModel = new Models.Note();
         noteModel.Filename1 = fileName;
@@ -148,4 +150,56 @@ public partial class PaeRegistroPage : ContentPage
             await Shell.Current.GoToAsync("..");
         }
     }
+
+    private async void SaveButton_Clicked(object sender, EventArgs e)
+    {
+        if (BindingContext == null)
+        {
+            Item.Nombre = txtNombre.Text;
+            Item.Sexo = txtSexo.Text;
+            Item.Edad = (int)stepperEdad.Value;
+            Item.Raza= txtRaza.Text;
+            Item.Tamano = txtNombre.Text;
+            int error = App.Repositorio.AddNewBurger(Item);
+            if (error == 404)
+            {
+                await DisplayAlert("Alerta", "La hamburguesa no se pudo ingresar debido a que su nombre ya existe", "OK");
+            }
+            else
+            {
+                await Shell.Current.GoToAsync("..");
+            }
+        }
+        else
+        {
+            App.Repositorio.actualizarBurger(aux.IdJM, aux.NombreJM, aux.DescripcionJM, aux.ConQuesoExtraJM);
+            await Shell.Current.GoToAsync("..");
+        }
+    }
+}
+
+
+
+private void OnCancelClicked(object sender, EventArgs e)
+{
+    Shell.Current.GoToAsync("..");
+}
+
+private void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
+{
+    _flag = e.Value;
+}
+
+private void cargarBurger(int id)
+{
+    Models.BurgerJM burgerBuscada = new Models.BurgerJM();
+    burgerBuscada = App.Repositorio.GetById(id);
+    aux = burgerBuscada;
+    BindingContext = burgerBuscada;
+}
+
+private async void eliminarBurgerBDD(object sender, EventArgs e)
+{
+    App.Repositorio.eliminarBurger(aux.IdJM);
+    await Shell.Current.GoToAsync("..");
 }

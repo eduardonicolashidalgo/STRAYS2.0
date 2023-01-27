@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System.Reflection.Metadata;
 
 namespace STRAYS.Models
 {
@@ -25,8 +26,7 @@ namespace STRAYS.Models
         [MaxLength(200)]
         public string Descripcion { get; set; }
 
-        [MaxLength(300)]
-        public string urlImagen { get; set; }
+        public byte[] Imagen { get; set; }
 
         public DateTime Date { get; set; }
     }
