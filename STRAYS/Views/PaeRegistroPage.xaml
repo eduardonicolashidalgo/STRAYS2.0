@@ -74,15 +74,21 @@
                             MaxLength="10"
                             Text="{Binding Sexo}"
                             />
-                    <Entry 
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            x:Name="txtEdad"
-                            Placeholder="Edad en meses"
-                            HeightRequest="50" 
-                            MaxLength="3"
-                            Text="{Binding Edad}"
-                            />
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding Source={x:Reference stepperEdad}, Path=Value, StringFormat='{0:F0}'}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                        <Stepper
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                x:Name="stepperEdad"
+                                HeightRequest="50" 
+                                Minimum="1"
+                                Maximum="20"
+                                Increment="1"
+                                HorizontalOptions="Center"
+                                />
+                    </HorizontalStackLayout>
                     <Entry 
                             Grid.Row="3"
                             Grid.Column="1"
