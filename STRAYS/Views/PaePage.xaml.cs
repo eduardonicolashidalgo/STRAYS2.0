@@ -21,7 +21,7 @@ public partial class PaePage : ContentPage
         Shell.Current.GoToAsync(nameof(PaeRegistroPage));
     }
 
-	private void GoToInfoPage(object sender, EventArgs e)
+	/*private void GoToInfoPage(object sender, EventArgs e)
 	{
         Shell.Current.GoToAsync(nameof(InfoPage));
     }
@@ -29,7 +29,7 @@ public partial class PaePage : ContentPage
 	private void GoToAlertaPage(object sender, EventArgs e)
 	{
         Shell.Current.GoToAsync(nameof(AlertaPage));
-    }
+    }*/
 
     protected override void OnAppearing()
     {
@@ -59,4 +59,8 @@ public partial class PaePage : ContentPage
         Shell.Current.FlyoutIsPresented = true;
     }
 
+    private void irArriba(object sender, EventArgs e)
+    {
+        lista.ScrollTo(0);
+    }
 }

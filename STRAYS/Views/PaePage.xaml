@@ -6,8 +6,101 @@
              Title="PaePage"
              Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="50,*">
-        <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*">
+    <Grid RowDefinitions="50,*,50">
+        <BoxView
+            Grid.Row="0"
+            HeightRequest="50"
+            BackgroundColor="{StaticResource colorPrincipal}"/>
+        <Button
+            Grid.Row="0"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="STRAYS"
+            TextColor="White"
+            FontSize="24"
+            FontFamily="Roboto-Bold"
+            BackgroundColor="{StaticResource colorPrincipal}"
+            Clicked="irArriba"/>
+        <CollectionView x:Name="lista"
+                        ItemsSource="{Binding PaeModel}"
+                        Margin="20"
+                        SelectionMode="Single"
+                        SelectionChanged="notesCollection_SelectionChanged"
+                        Grid.Row="1">
+
+            <!-- Designate how the collection of items are laid out -->
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="30" />
+            </CollectionView.ItemsLayout>
+
+            <!-- Define the appearance of each item in the list -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:PaeModel">
+                    <StackLayout>
+                        <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="250"/>
+                        <BoxView Color="White" HeightRequest="10"/>
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="60,25,25">
+                            <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                                <Label 
+                                        Text="{Binding Nombre}"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        FontSize="30"
+                                        FontFamily="Bold"
+                                        Style="{StaticResource titulos}"
+                                        Padding="0"/>
+                                <Label 
+                                        Text="{Binding Date}"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Start"
+                                        FontFamily="Roboto-Light"
+                                        FontSize="10"
+                                        Style="{StaticResource textoCuerpo}"/>
+                            </StackLayout>
+                            <HorizontalStackLayout Grid.Column="0" Grid.Row="1">
+                                <Label Text="Sexo:" Style="{StaticResource textoCuerpoTags}"/>
+                                <Label 
+                                        Text="{Binding Sexo}"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Style="{StaticResource textoCuerpo}"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Column="1" Grid.Row="1" HorizontalOptions="End">
+                                <Label Text="Edad:" Style="{StaticResource textoCuerpoTags}"/>
+                                <Label 
+                                        Text="{Binding Edad}"
+                                        Grid.Column="3"
+                                        Grid.Row="0"
+                                        Style="{StaticResource textoCuerpo}"/>
+                                <Label Text=" meses" Style="{StaticResource textoCuerpo}"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Column="0" Grid.Row="2">
+                                <Label Text="Raza:" Style="{StaticResource textoCuerpoTags}"/>
+                                <Label 
+                                        Text="{Binding Raza}"
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Style="{StaticResource textoCuerpo}"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Column="1" Grid.Row="2" HorizontalOptions="End">
+                                <Label Text="Tamaño:" Grid.Column="2" Grid.Row="1" Style="{StaticResource textoCuerpoTags}"/>
+                                <Label 
+                                        Text="{Binding Tamano}"
+                                        Grid.Column="3"
+                                        Grid.Row="1"
+                                        Style="{StaticResource textoCuerpo}"/>
+                            </HorizontalStackLayout>
+
+                        </Grid>
+                        <Label Text="Descripción:" Style="{StaticResource textoCuerpoTags}"/>
+                        <Label Text="{Binding Descripcion}" Style="{StaticResource textoCuerpo}"/>
+                        <BoxView Color="White" HeightRequest="10"/>
+                        <BoxView Color="#808080" HeightRequest="1"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*">
             <BoxView Color="{StaticResource colorPrincipal}" Grid.ColumnSpan="7" CornerRadius="0,0,10,10"/>
             <ImageButton 
                 Grid.Column="0" 
@@ -15,12 +108,16 @@
                 Clicked="AbrirFlyout"
                 Style="{StaticResource iconosTabBar}"
                 Margin="10"/>
-            <ImageButton 
+            <Image 
                 Grid.Column="1" 
                 Source="dog.png"
-                Clicked="GoToPaePage"
                 Style="{StaticResource iconosTabBar}"/>
             <ImageButton 
+                Source="add.png"
+                Grid.Row="6"    
+                Style="{StaticResource iconosTabBar}" 
+                Clicked="GoToPaeRegistroPage"/>
+            <!--<ImageButton 
                 Grid.Column="5" 
                 Source="info.png"
                 Clicked="GoToInfoPage"
@@ -29,95 +126,7 @@
                 Grid.Column="6" 
                 Source="alerta.png"
                 Clicked="GoToAlertaPage"
-                Style="{StaticResource iconosTabBar}"/>
+                Style="{StaticResource iconosTabBar}"/>-->
         </Grid>
-        <VerticalStackLayout Grid.Column="0" Grid.Row="1">
-            <BoxView Color="White" HeightRequest="10"/>
-            <Button     
-                Text="Registrar animalito"
-                Style="{StaticResource botonPrimario}" 
-                WidthRequest="160"
-                FontSize="14"
-                Clicked="GoToPaeRegistroPage"/>
-            <!-- Display notes in a list -->
-            <CollectionView x:Name="lista"
-                        ItemsSource="{Binding PaeModel}"
-                        Margin="20"
-                        SelectionMode="Single"
-                        SelectionChanged="notesCollection_SelectionChanged">
-
-                <!-- Designate how the collection of items are laid out -->
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="30" />
-                </CollectionView.ItemsLayout>
-
-                <!-- Define the appearance of each item in the list -->
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:PaeModel">
-                        <StackLayout>
-                            <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="250"/>
-                            <BoxView Color="White" HeightRequest="10"/>
-                            <Grid ColumnDefinitions="*,*" RowDefinitions="60,25,25">
-                                <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
-                                    <Label 
-                                        Text="{Binding Nombre}"
-                                        VerticalOptions="Center"
-                                        HorizontalOptions="Start"
-                                        FontSize="30"
-                                        FontFamily="Bold"
-                                        Style="{StaticResource titulos}"
-                                        Padding="0"/>
-                                    <Label 
-                                        Text="{Binding Date}"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start"
-                                        FontFamily="Roboto-Light"
-                                        FontSize="10"
-                                        Style="{StaticResource textoCuerpo}"/>
-                                </StackLayout>
-                                <HorizontalStackLayout Grid.Column="0" Grid.Row="1">
-                                    <Label Text="Sexo:" Style="{StaticResource textoCuerpoTags}"/>
-                                    <Label 
-                                        Text="{Binding Sexo}"
-                                        Grid.Column="1"
-                                        Grid.Row="0"
-                                        Style="{StaticResource textoCuerpo}"/>
-                                </HorizontalStackLayout>
-                                <HorizontalStackLayout Grid.Column="1" Grid.Row="1" HorizontalOptions="End">
-                                    <Label Text="Edad:" Style="{StaticResource textoCuerpoTags}"/>
-                                    <Label 
-                                        Text="{Binding Edad}"
-                                        Grid.Column="3"
-                                        Grid.Row="0"
-                                        Style="{StaticResource textoCuerpo}"/>
-                                    <Label Text=" meses" Style="{StaticResource textoCuerpo}"/>
-                                </HorizontalStackLayout>
-                                <HorizontalStackLayout Grid.Column="0" Grid.Row="2">
-                                    <Label Text="Raza:" Style="{StaticResource textoCuerpoTags}"/>
-                                    <Label 
-                                        Text="{Binding Raza}"
-                                        Grid.Column="1"
-                                        Grid.Row="1"
-                                        Style="{StaticResource textoCuerpo}"/>
-                                </HorizontalStackLayout>
-                                <HorizontalStackLayout Grid.Column="1" Grid.Row="2" HorizontalOptions="End">
-                                    <Label Text="Tamaño:" Grid.Column="2" Grid.Row="1" Style="{StaticResource textoCuerpoTags}"/>
-                                    <Label 
-                                        Text="{Binding Tamano}"
-                                        Grid.Column="3"
-                                        Grid.Row="1"
-                                        Style="{StaticResource textoCuerpo}"/>
-                                </HorizontalStackLayout>
-
-                            </Grid>
-                            <Label Text="Descripción:" Style="{StaticResource textoCuerpoTags}"/>
-                            <Label Text="{Binding Descripcion}" Style="{StaticResource textoCuerpo}"/>
-                            <BoxView Color="White" HeightRequest="10"/>
-                            <BoxView Color="#808080" HeightRequest="1"/>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
     </Grid>
 </ContentPage>
