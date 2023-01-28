@@ -6,11 +6,11 @@
              Title="PaePage"
              Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="50,*,50">
+    <Grid RowDefinitions="60,*,60">
         <BoxView
             Grid.Row="0"
-            HeightRequest="50"
-            BackgroundColor="{StaticResource colorPrincipal}"/>
+            HeightRequest="60"
+            Color="{StaticResource colorPrincipal}"/>
         <Button
             Grid.Row="0"
             HorizontalOptions="Center"
@@ -109,12 +109,12 @@
                 Style="{StaticResource iconosTabBar}"
                 Margin="10"/>
             <Image 
-                Grid.Column="1" 
+                Grid.Column="3" 
                 Source="dog.png"
                 Style="{StaticResource iconosTabBar}"/>
             <ImageButton 
                 Source="add.png"
-                Grid.Row="6"    
+                Grid.Column="6"    
                 Style="{StaticResource iconosTabBar}" 
                 Clicked="GoToPaeRegistroPage"/>
             <!--<ImageButton 
