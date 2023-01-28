@@ -17,7 +17,7 @@
                 <ImageButton 
                         Grid.Column="6" 
                         Source="atras.png"
-                        Clicked="GoToAlertaPage"
+                        Clicked="Cancelar"
                         Style="{StaticResource iconosTabBar}"/>
             </Grid>
             <VerticalStackLayout Grid.Column="0" Grid.Row="1">

@@ -18,13 +18,18 @@
                 <ImageButton 
                         Grid.Column="6" 
                         Source="atras.png"
-                        Clicked="GoToPaePage"
+                        Clicked="Cancelar"
                         Style="{StaticResource iconosTabBar}"/>
             </Grid>
             <VerticalStackLayout Grid.Column="0" Grid.Row="1">
                 <Label
                         Style="{StaticResource titulos}"
                         Text="Registrar nuevo animalito"/>
+                <Image
+                    x:Name="imagen" 
+                    Source="{Binding Imagen}"
+                    Aspect="AspectFill" 
+                    HeightRequest="250"/>
                 <Grid ColumnDefinitions="*,3*" RowDefinitions="45,45,45,45,45" Padding="15" RowSpacing="10">
                     <Label 
                             Grid.Row="0"
@@ -74,19 +79,18 @@
                             MaxLength="10"
                             Text="{Binding Sexo}"
                             />
-                    <HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Row="2" Grid.Column="1">
                         <Label Text="{Binding Source={x:Reference stepperEdad}, Path=Value, StringFormat='{0:F0}'}"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
                         <Stepper
-                                Grid.Row="2"
-                                Grid.Column="1"
                                 x:Name="stepperEdad"
                                 HeightRequest="50" 
                                 Minimum="1"
                                 Maximum="20"
                                 Increment="1"
                                 HorizontalOptions="Center"
+                                Value="{Binding Edad}"
                                 />
                     </HorizontalStackLayout>
                     <Entry 
@@ -102,9 +106,9 @@
                             Grid.Row="4"
                             Grid.Column="1"
                             x:Name="txtTamano"
-                            Placeholder="Pequeño, Mediano o Grande"
+                            Placeholder="Pequeño, Mediano, o Grande"
                             HeightRequest="50" 
-                            MaxLength="7"
+                            MaxLength="30"
                             Text="{Binding Tamano}"
                             />
                 </Grid>
