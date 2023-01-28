@@ -1,3 +1,5 @@
+using STRAYS.Models;
+
 namespace STRAYS.Views;
 
 public partial class PaePage : ContentPage
@@ -5,7 +7,8 @@ public partial class PaePage : ContentPage
 	public PaePage()
 	{
 		InitializeComponent();
-        BindingContext = new Models.AllNotes();
+        List<PaeModel> mascota = App.Repositorio.GetAllPaes();
+        lista.ItemsSource = mascota;
     }
 
 	private void GoToPaePage(object sender, EventArgs e)
@@ -18,7 +21,7 @@ public partial class PaePage : ContentPage
         Shell.Current.GoToAsync(nameof(PaeRegistroPage));
     }
 
-	private void GoToInfoPage(object sender, EventArgs e)
+	/*private void GoToInfoPage(object sender, EventArgs e)
 	{
         Shell.Current.GoToAsync(nameof(InfoPage));
     }
@@ -26,11 +29,13 @@ public partial class PaePage : ContentPage
 	private void GoToAlertaPage(object sender, EventArgs e)
 	{
         Shell.Current.GoToAsync(nameof(AlertaPage));
-    }
+    }*/
 
     protected override void OnAppearing()
     {
-        ((Models.AllNotes)BindingContext).LoadNotes();
+        base.OnAppearing();
+        List<PaeModel> mascota = App.Repositorio.GetAllPaes();
+        lista.ItemsSource = mascota;
     }
 
 
@@ -39,18 +44,23 @@ public partial class PaePage : ContentPage
         if (e.CurrentSelection.Count != 0)
         {
             // Get the note model
-            var note = (Models.Note)e.CurrentSelection[0];
+            var pae = (Models.PaeModel)e.CurrentSelection[0];
 
             // Should navigate to "NotePage?ItemId=path\on\device\XYZ.notes.txt"
-            await Shell.Current.GoToAsync($"{nameof(PaeRegistroPage)}?{nameof(PaeRegistroPage.ItemId)}={note.Filename1}");
+            await Shell.Current.GoToAsync($"{nameof(PaeRegistroPage)}?{nameof(PaeRegistroPage.ItemId)}={pae.IdPae}");
 
             // Unselect the UI
-            notesCollection.SelectedItem = null;
+            lista.SelectedItem = null;
         }
     }
 
     private void AbrirFlyout(object sender, EventArgs e)
     {
         Shell.Current.FlyoutIsPresented = true;
+    }
+
+    private void irArriba(object sender, EventArgs e)
+    {
+        lista.ScrollTo(0);
     }
 }

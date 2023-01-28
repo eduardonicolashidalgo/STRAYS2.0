@@ -44,6 +44,26 @@
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
+            <Style x:Key="botonEliminar" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource colorAlerta}" />
+                <Setter Property="CornerRadius" Value="23" />
+                <Setter Property="WidthRequest" Value="46" />
+                <Setter Property="HeightRequest" Value="46" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Source" Value="delete.png" />
+            </Style>
+
+            <Style x:Key="botonGuardarImagen" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource colorPrincipal}" />
+                <Setter Property="CornerRadius" Value="23" />
+                <Setter Property="WidthRequest" Value="46" />
+                <Setter Property="HeightRequest" Value="46" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Source" Value="addimage2.png" />
+            </Style>
+
             <Style x:Key="iconosTabBar" TargetType="ImageButton">
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
