@@ -7,7 +7,7 @@ public partial class PaeRegistroPage : ContentPage
 {
     PaeModel Item = new PaeModel();
     PaeModel aux = new PaeModel();
-    byte[] img = null;
+    string img;
 
     public int ItemId
     {
@@ -52,7 +52,12 @@ public partial class PaeRegistroPage : ContentPage
 
         var stream = result.FullPath;
         imagen.Source = stream;
-        img = File.ReadAllBytes(stream);
+        img = stream;
+
+        if (BindingContext != null)
+        {
+            aux.Imagen = stream;
+        }
     }
 
     private async void SaveButton_Clicked(object sender, EventArgs e)
