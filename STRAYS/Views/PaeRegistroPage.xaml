@@ -152,6 +152,16 @@
                             Clicked="DeleteButton_Clicked"
                              />
                 </Grid>
+                <Entry
+                    Placeholder="Ingresa la descripción de la mascota que encontraste"
+                    x:Name="descAPI"
+                    />
+                <Button
+                    Style="{StaticResource botonPrimario}"
+                    HorizontalOptions="Center"
+                    Text="Generar imagen con Dall-e"
+                    Clicked="generarImg"
+                    />
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

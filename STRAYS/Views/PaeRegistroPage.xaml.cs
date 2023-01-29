@@ -51,7 +51,7 @@ public partial class PaeRegistroPage : ContentPage
         }
 
         var stream = result.FullPath;
-
+        imagen.Source = stream;
         img = File.ReadAllBytes(stream);
     }
 
@@ -93,5 +93,15 @@ public partial class PaeRegistroPage : ContentPage
     private void Cancelar(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync("..");
+    }
+
+
+    public async void generarImg(object sender, EventArgs e)
+    {
+        input inp = new input() { size = "256x256", n = 1 };
+        inp.prompt = descAPI.Text;
+        responseModel resp;
+        resp = await App.API.GenerateImage(inp);
+        imagen.Source = ImageSource.FromUri(new Uri(resp.data[0].url));
     }
 }
