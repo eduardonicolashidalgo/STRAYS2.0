@@ -8,7 +8,6 @@ public partial class PaeRegistroPage : ContentPage
     PaeModel Item = new PaeModel();
     PaeModel aux = new PaeModel();
     string img;
-    string imgapi;
 
     public int ItemId
     {
@@ -108,7 +107,14 @@ public partial class PaeRegistroPage : ContentPage
         inp.prompt = descAPI.Text;
         responseModel resp;
         resp = await App.API.GenerateImage(inp);
-        imagen.Source = ImageSource.FromUri(new Uri(resp.data[0].url));
-        //imgapi = resp.data[0].url;
+        try
+        {
+            Uri imageurl = new Uri(resp.data[0].url);
+            imagen.Source = ImageSource.FromUri(imageurl);
+            img = imageurl.ToString();
+        }catch(Exception)
+        {
+            await Application.Current.MainPage.DisplayAlert("Alerta", "No se logró contactar a la API", "OK");
+        }
     }
 }
