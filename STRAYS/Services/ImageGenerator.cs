@@ -14,7 +14,7 @@ namespace STRAYS.Services
             {
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "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");
+                    new AuthenticationHeaderValue("Bearer", "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");
 
                 var Message = await client.PostAsync("https://api.openai.com/v1/images/generations",
                     new StringContent(JsonConvert.SerializeObject(input),

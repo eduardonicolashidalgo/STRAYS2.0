@@ -37,7 +37,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:PaeModel">
                     <StackLayout>
-                        <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="250"/>
+                        <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="250" />
                         <BoxView Color="White" HeightRequest="10"/>
                         <Grid ColumnDefinitions="*,*" RowDefinitions="60,25,25">
                             <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
@@ -116,7 +116,8 @@
                 Source="add.png"
                 Grid.Column="6"    
                 Style="{StaticResource iconosTabBar}" 
-                Clicked="GoToPaeRegistroPage"/>
+                Clicked="GoToPaeRegistroPage"
+                Margin="10"/>
             <!--<ImageButton 
                 Grid.Column="5" 
                 Source="info.png"

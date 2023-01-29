@@ -8,6 +8,7 @@ public partial class PaeRegistroPage : ContentPage
     PaeModel Item = new PaeModel();
     PaeModel aux = new PaeModel();
     string img;
+    string imgapi;
 
     public int ItemId
     {
@@ -108,5 +109,6 @@ public partial class PaeRegistroPage : ContentPage
         responseModel resp;
         resp = await App.API.GenerateImage(inp);
         imagen.Source = ImageSource.FromUri(new Uri(resp.data[0].url));
+        //imgapi = resp.data[0].url;
     }
 }
