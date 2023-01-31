@@ -79,10 +79,28 @@
                             MaxLength="10"
                             Text="{Binding Sexo}"
                             />
-                    <HorizontalStackLayout Grid.Row="2" Grid.Column="1">
-                        <Label Text="{Binding Source={x:Reference stepperEdad}, Path=Value, StringFormat='{0:F0}'}"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
+                    <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="Center">
+                        <Grid WidthRequest="40">
+                            <BoxView 
+                                WidthRequest="35"
+                                HeightRequest="30"
+                                CornerRadius="15"
+                                Color="{StaticResource colorPrincipal}"
+                            />
+                            <Label 
+                                Text="{Binding Source={x:Reference stepperEdad}, Path=Value, StringFormat='{0:F0}'}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Grid.Column="0"
+                                Style="{StaticResource textoCuerpo}"
+                                FontFamily="Roboto-Bold"
+                                TextColor="White"
+                                />
+                        </Grid>
+                        <BoxView 
+                            WidthRequest="15"
+                            Color="White"
+                            />
                         <Stepper
                                 x:Name="stepperEdad"
                                 HeightRequest="50" 
@@ -131,27 +149,60 @@
 
                 <Grid ColumnDefinitions="60,*,60" RowDefinitions="60" Padding="15">
                     <ImageButton     
-                            Grid.Column="0"
-                            Grid.Row="0"
-                            Style="{StaticResource botonGuardarImagen}" 
-                            Clicked="PickAndShow"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Style="{StaticResource botonGuardarImagen}" 
+                        Clicked="PickAndShow"
+                        Padding="10"
                              />
                     <Button     
-                            Grid.Column="1"
-                            Grid.Row="0"
-                            Text="Guardar"
-                            Style="{StaticResource botonSecundario}" 
-                            WidthRequest="150"
-                            FontSize="14"
-                            Clicked="SaveButton_Clicked"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="Guardar"
+                        Style="{StaticResource botonSecundario}" 
+                        WidthRequest="150"
+                        FontSize="14"
+                        Clicked="SaveButton_Clicked"
                              />
                     <ImageButton     
-                            Grid.Column="2"
-                            Grid.Row="0"
-                            Style="{StaticResource botonEliminar}" 
-                            Clicked="DeleteButton_Clicked"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Style="{StaticResource botonEliminar}" 
+                        Clicked="DeleteButton_Clicked"
+                        Padding="10"
                              />
                 </Grid>
+                <BoxView
+                    Margin="10"
+                    Color="{StaticResource colorPrincipal}"
+                    HeightRequest="2"
+                    />
+                <Label
+                    Style="{StaticResource textoCuerpo}"
+                    Text="Si no tienes foto del animalito encontrado, puedes generar una imagen con la descripción detallada gracias a la Inteligencia Artificial de OpenAI"
+                    Margin="10"
+                    FontFamily="Roboto-Light"
+                    HorizontalTextAlignment="Center"
+                    Padding="15"
+                    />
+                <Editor
+                    Placeholder="Descripción del animalito"
+                    x:Name="descAPI"
+                    Margin="10"
+                    HeightRequest="100"
+                    MaxLength="100"
+                    />
+                <Button
+                    Style="{StaticResource botonPrimario}"
+                    HorizontalOptions="Center"
+                    Text="Generar"
+                    Clicked="generarImg"
+                    />
+                <BoxView
+                    Margin="10"
+                    Color="{StaticResource colorPrincipal}"
+                    HeightRequest="2"
+                    />
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

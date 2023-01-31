@@ -158,7 +158,7 @@ namespace STRAYS.Data
             string raza,
             string tam,
             string des,
-            byte[] img)
+            string img)
         {
             Init();
             var actualizada = conn.Table<PaeModel>().Where(r => r.IdPae == id).FirstOrDefault();
@@ -186,7 +186,7 @@ namespace STRAYS.Data
             string raza,
             string ubi,
             string des,
-            byte[] img)
+            string img)
         {
             Init();
             var actualizada = conn.Table<AlertaModel>().Where(r => r.IdAlerta == id).FirstOrDefault();
@@ -213,7 +213,7 @@ namespace STRAYS.Data
             string raza,
             string ubi,
             string des,
-            byte[] img)
+            string img)
         {
             Init();
             var actualizada = conn.Table<InfoModel>().Where(r => r.IdInfo == id).FirstOrDefault();

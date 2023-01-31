@@ -24,7 +24,7 @@ namespace STRAYS.Models
         [MaxLength(200)]
         public string Descripcion { get; set; }
 
-        public byte[] Imagen { get; set; }
+        public string Imagen { get; set; }
 
         public DateTime Date { get; set; }
     }

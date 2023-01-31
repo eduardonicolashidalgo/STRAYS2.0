@@ -1,4 +1,5 @@
 ﻿using STRAYS.Data;
+using STRAYS.Services;
 
 namespace STRAYS;
 
@@ -17,7 +18,7 @@ public static class MauiProgram
 
         string dbPath = FileAccessHelper.GetLocalFilePath("burger.db3");
         builder.Services.AddSingleton<DatabaseActions>(s => ActivatorUtilities.CreateInstance<DatabaseActions>(s, dbPath));
-
+        builder.Services.AddSingleton<ImageGenerator>(s => ActivatorUtilities.CreateInstance<ImageGenerator>(s));
 
         return builder.Build();
 	}

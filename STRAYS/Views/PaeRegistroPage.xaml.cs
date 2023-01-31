@@ -7,7 +7,7 @@ public partial class PaeRegistroPage : ContentPage
 {
     PaeModel Item = new PaeModel();
     PaeModel aux = new PaeModel();
-    byte[] img = null;
+    string img;
 
     public int ItemId
     {
@@ -51,8 +51,13 @@ public partial class PaeRegistroPage : ContentPage
         }
 
         var stream = result.FullPath;
+        imagen.Source = stream;
+        img = stream;
 
-        img = File.ReadAllBytes(stream);
+        if (BindingContext != null)
+        {
+            aux.Imagen = stream;
+        }
     }
 
     private async void SaveButton_Clicked(object sender, EventArgs e)
@@ -93,5 +98,23 @@ public partial class PaeRegistroPage : ContentPage
     private void Cancelar(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync("..");
+    }
+
+
+    public async void generarImg(object sender, EventArgs e)
+    {
+        input inp = new input() { size = "256x256", n = 1 };
+        inp.prompt = descAPI.Text;
+        responseModel resp;
+        resp = await App.API.GenerateImage(inp);
+        try
+        {
+            Uri imageurl = new Uri(resp.data[0].url);
+            imagen.Source = ImageSource.FromUri(imageurl);
+            img = imageurl.ToString();
+        }catch(Exception)
+        {
+            await Application.Current.MainPage.DisplayAlert("Alerta", "No se logró contactar a la API", "OK");
+        }
     }
 }
