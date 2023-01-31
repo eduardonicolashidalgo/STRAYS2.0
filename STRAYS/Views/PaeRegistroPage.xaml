@@ -10,10 +10,9 @@
         <Grid RowDefinitions="50,*">
             <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*">
                 <BoxView Color="{StaticResource colorPrincipal}" Grid.ColumnSpan="7" CornerRadius="0,0,10,10"/>
-                <ImageButton 
+                <Image 
                         Grid.Column="0"
                         Source="dog.png"
-                        Clicked="GoToPaePage"
                         Style="{StaticResource iconosTabBar}"/>
                 <ImageButton 
                         Grid.Column="6" 
@@ -246,12 +245,14 @@
                             />
                             <ImageButton
                                 Source="refresh.png"
-                                Style="{StaticResource botonSecundarioImg}" 
-                                Clicked="actualizarLlaveAPI"
-                                HeightRequest="60"
-                                WidthRequest="60"
+                                Style="{StaticResource botonGuardarImagen}" 
+                                BackgroundColor="White"
+                                HeightRequest="70"
+                                WidthRequest="70"
                                 CornerRadius="25"
                                 Padding="10"
+                                Clicked="actualizarLlaveAPI"
+                                BorderWidth="0"
                                 />
                         </HorizontalStackLayout>
                         <Label
