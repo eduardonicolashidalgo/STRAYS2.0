@@ -112,9 +112,27 @@ public partial class PaeRegistroPage : ContentPage
             Uri imageurl = new Uri(resp.data[0].url);
             imagen.Source = ImageSource.FromUri(imageurl);
             img = imageurl.ToString();
-        }catch(Exception)
+        }catch(System.NullReferenceException)
         {
             await Application.Current.MainPage.DisplayAlert("Alerta", "No se logró contactar a la API", "OK");
         }
+
+    }
+
+    private void actualizarLlaveAPI(object sender, EventArgs e)
+    {
+        App.API.setKey(llaveapi.Text);
+        mensajeLlave.IsVisible = true;
+        llaveapi.Text = "";
+    }
+
+    private void cambiarColorPressed(object sender, EventArgs e)
+    {
+        btngenerar.BackgroundColor = Color.FromArgb("#dcc5d9");
+    }
+
+    private void cambiarColorReleased(object sender, EventArgs e)
+    {
+        btngenerar.BackgroundColor = Color.FromArgb("#8B3C7F"); ;
     }
 }

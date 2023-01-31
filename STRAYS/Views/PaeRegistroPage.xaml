@@ -193,16 +193,66 @@
                     MaxLength="100"
                     />
                 <Button
+                    x:Name="btngenerar"
                     Style="{StaticResource botonPrimario}"
                     HorizontalOptions="Center"
                     Text="Generar"
                     Clicked="generarImg"
+                    Pressed="cambiarColorPressed"
+                    Released="cambiarColorReleased"
                     />
-                <BoxView
-                    Margin="10"
-                    Color="{StaticResource colorPrincipal}"
-                    HeightRequest="2"
-                    />
+                <Grid HeightRequest="170" RowDefinitions="20,*,20" Margin="0,15,0,0">
+                    <BoxView
+                            Color="{StaticResource colorPrincipal}"
+                            Grid.Row="0"
+                            Grid.RowSpan="4"
+                        />
+                    <VerticalStackLayout Grid.Row="1">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="¿No funciona la API?"
+                            Style="{StaticResource textoCuerpo}"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            />
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="prueba cambiando la llave de la API:"
+                            Style="{StaticResource textoCuerpo}"
+                            TextColor="White"
+                            Margin="0,5,0,0"
+                            />
+                        <HorizontalStackLayout Margin="15,15,15,0" HorizontalOptions="Center">
+                            <Entry
+                                x:Name="llaveapi"
+                                BackgroundColor="White"
+                                Margin="0,0,10,0"
+                                HeightRequest="15"
+                                WidthRequest="200"
+                                Placeholder="Copia y pega la llave"
+                            />
+                            <ImageButton
+                                Source="refresh.png"
+                                Style="{StaticResource botonSecundarioImg}" 
+                                Clicked="actualizarLlaveAPI"
+                                WidthRequest="35"
+                                HeightRequest="35"
+                                Padding="3"
+                                BorderWidth="0"
+                                />
+                        </HorizontalStackLayout>
+                        <Label
+                            x:Name="mensajeLlave"
+                            IsVisible="False"
+                            Text="Llave actualizada"
+                            Style="{StaticResource textoCuerpo}"
+                            HorizontalOptions="Center"
+                            Margin="0,2,0,0"
+                            TextColor="White"
+                            FontSize="10"
+                            />
+                    </VerticalStackLayout>
+                </Grid>
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

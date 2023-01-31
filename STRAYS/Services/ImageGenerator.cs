@@ -7,6 +7,13 @@ namespace STRAYS.Services
 {
     public class ImageGenerator
     {
+        string key = "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";
+
+        public void setKey(string key)
+        {
+            this.key = key;
+        }
+
         public async Task<responseModel> GenerateImage(input input)
         {
             responseModel resp = new responseModel();
@@ -14,7 +21,7 @@ namespace STRAYS.Services
             {
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "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");
+                    new AuthenticationHeaderValue("Bearer", key);
 
                 var Message = await client.PostAsync("https://api.openai.com/v1/images/generations",
                     new StringContent(JsonConvert.SerializeObject(input),
