@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="STRAYS.Views.PaePage"
              xmlns:models="clr-namespace:STRAYS.Models"
+             xmlns:viewmodel="clr-namespace:STRAYS.ViewModels"
+             x:DataType="viewmodel:PaeViewModel"
              Title="PaePage"
              Shell.NavBarIsVisible="False">
 
@@ -22,7 +24,7 @@
             BackgroundColor="{StaticResource colorPrincipal}"
             Clicked="irArriba"/>
         <CollectionView x:Name="lista"
-                        ItemsSource="{Binding PaeModel}"
+                        ItemsSource="{Binding Mascota}"
                         Margin="20"
                         SelectionMode="Single"
                         SelectionChanged="notesCollection_SelectionChanged"
@@ -37,7 +39,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:PaeModel">
                     <StackLayout>
-                        <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="250" />
+                        <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="400" />
                         <BoxView Color="White" HeightRequest="10"/>
                         <Grid ColumnDefinitions="*,*" RowDefinitions="60,25,25">
                             <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
@@ -105,7 +107,7 @@
             <ImageButton 
                 Grid.Column="0" 
                 Source="burgermenu.png"
-                Clicked="AbrirFlyout"
+                Command="{Binding AbrirFlyoutCommand}"
                 Style="{StaticResource iconosTabBar}"
                 Margin="10"/>
             <Image 
@@ -116,7 +118,7 @@
                 Source="add.png"
                 Grid.Column="6"    
                 Style="{StaticResource iconosTabBar}" 
-                Clicked="GoToPaeRegistroPage"
+                Command="{Binding GoToPaeRegistroPageCommand}"
                 Margin="10"/>
             <!--<ImageButton 
                 Grid.Column="5" 

@@ -1,35 +1,15 @@
 using STRAYS.Models;
+using STRAYS.ViewModels;
 
 namespace STRAYS.Views;
 
 public partial class PaePage : ContentPage
 {
-	public PaePage()
+	public PaePage(PaeViewModel vm)
 	{
 		InitializeComponent();
-        List<PaeModel> mascota = App.Repositorio.GetAllPaes();
-        lista.ItemsSource = mascota;
+        BindingContext= vm;
     }
-
-	private void GoToPaePage(object sender, EventArgs e)
-	{
-        Shell.Current.GoToAsync(nameof(PaePage));
-    }
-
-	private void GoToPaeRegistroPage(object sender, EventArgs e)
-	{
-        Shell.Current.GoToAsync(nameof(PaeRegistroPage));
-    }
-
-	/*private void GoToInfoPage(object sender, EventArgs e)
-	{
-        Shell.Current.GoToAsync(nameof(InfoPage));
-    }
-
-	private void GoToAlertaPage(object sender, EventArgs e)
-	{
-        Shell.Current.GoToAsync(nameof(AlertaPage));
-    }*/
 
     protected override void OnAppearing()
     {
@@ -37,7 +17,6 @@ public partial class PaePage : ContentPage
         List<PaeModel> mascota = App.Repositorio.GetAllPaes();
         lista.ItemsSource = mascota;
     }
-
 
     private async void notesCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -52,11 +31,6 @@ public partial class PaePage : ContentPage
             // Unselect the UI
             lista.SelectedItem = null;
         }
-    }
-
-    private void AbrirFlyout(object sender, EventArgs e)
-    {
-        Shell.Current.FlyoutIsPresented = true;
     }
 
     private void irArriba(object sender, EventArgs e)

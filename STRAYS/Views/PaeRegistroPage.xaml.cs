@@ -19,10 +19,6 @@ public partial class PaeRegistroPage : ContentPage
 		InitializeComponent();
     }
 
-	private void GoToPaePage(object sender, EventArgs e)
-	{
-        Shell.Current.GoToAsync(nameof(PaePage));
-    }
 
     private async void DeleteButton_Clicked(object sender, EventArgs e)
     {
@@ -71,6 +67,7 @@ public partial class PaeRegistroPage : ContentPage
             Item.Tamano = txtTamano.Text;
             Item.Descripcion= txtDescripcion.Text;
             Item.Imagen = img;
+            Item.Date = DateTime.Now;
             int error = App.Repositorio.insertRegistroPae(Item);
             if (error == 404)
             {
@@ -90,7 +87,7 @@ public partial class PaeRegistroPage : ContentPage
                 aux.Raza,
                 aux.Tamano,
                 aux.Descripcion,
-                aux.Imagen);
+                img);
             await Shell.Current.GoToAsync("..");
         }
     }
