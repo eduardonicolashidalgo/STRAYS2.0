@@ -21,7 +21,7 @@ public partial class PaeRegistroPage : ContentPage
 
 	private void GoToPaePage(object sender, EventArgs e)
 	{
-        Shell.Current.GoToAsync(nameof(PaePage));
+        _ = Shell.Current.GoToAsync(nameof(PaePage));
     }
 
     private async void DeleteButton_Clicked(object sender, EventArgs e)
@@ -71,6 +71,7 @@ public partial class PaeRegistroPage : ContentPage
             Item.Tamano = txtTamano.Text;
             Item.Descripcion= txtDescripcion.Text;
             Item.Imagen = img;
+            Item.Date = DateTime.Now;
             int error = App.Repositorio.insertRegistroPae(Item);
             if (error == 404)
             {

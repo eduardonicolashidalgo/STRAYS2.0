@@ -25,11 +25,18 @@
                 <Label
                         Style="{StaticResource titulos}"
                         Text="Registrar nuevo animalito"/>
-                <Image
-                    x:Name="imagen" 
-                    Source="{Binding Imagen}"
-                    Aspect="AspectFill" 
-                    HeightRequest="250"/>
+                <Grid HeightRequest="400" RowDefinitions="*">
+                    <Image
+                        Source="empty.png"
+                        Aspect="Fill"
+                        Grid.Row="0"
+                        />
+                    <Image
+                        Grid.Row="0"
+                        x:Name="imagen" 
+                        Source="{Binding Imagen}"
+                        Aspect="Fill"/>
+                </Grid>
                 <Grid ColumnDefinitions="*,3*" RowDefinitions="45,45,45,45,45" Padding="15" RowSpacing="10">
                     <Label 
                             Grid.Row="0"
@@ -147,13 +154,16 @@
                         />
                 </Grid>
 
-                <Grid ColumnDefinitions="60,*,60" RowDefinitions="60" Padding="15">
+                <Grid ColumnDefinitions="60,*,60" RowDefinitions="70" Padding="15">
                     <ImageButton     
                         Grid.Column="0"
                         Grid.Row="0"
                         Style="{StaticResource botonGuardarImagen}" 
-                        Clicked="PickAndShow"
+                        HeightRequest="70"
+                        WidthRequest="70"
+                        CornerRadius="25"
                         Padding="10"
+                        Clicked="PickAndShow"
                              />
                     <Button     
                         Grid.Column="1"
@@ -169,6 +179,9 @@
                         Grid.Row="0"
                         Style="{StaticResource botonEliminar}" 
                         Clicked="DeleteButton_Clicked"
+                        HeightRequest="70"
+                        WidthRequest="70"
+                        CornerRadius="25"
                         Padding="10"
                              />
                 </Grid>
@@ -201,7 +214,7 @@
                     Pressed="cambiarColorPressed"
                     Released="cambiarColorReleased"
                     />
-                <Grid HeightRequest="170" RowDefinitions="20,*,20" Margin="0,15,0,0">
+                <Grid HeightRequest="190" RowDefinitions="20,*,20" Margin="0,15,0,0">
                     <BoxView
                             Color="{StaticResource colorPrincipal}"
                             Grid.Row="0"
@@ -227,18 +240,18 @@
                                 x:Name="llaveapi"
                                 BackgroundColor="White"
                                 Margin="0,0,10,0"
-                                HeightRequest="15"
-                                WidthRequest="200"
+                                HeightRequest="40"
+                                WidthRequest="250"
                                 Placeholder="Copia y pega la llave"
                             />
                             <ImageButton
                                 Source="refresh.png"
                                 Style="{StaticResource botonSecundarioImg}" 
                                 Clicked="actualizarLlaveAPI"
-                                WidthRequest="35"
-                                HeightRequest="35"
-                                Padding="3"
-                                BorderWidth="0"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                CornerRadius="25"
+                                Padding="10"
                                 />
                         </HorizontalStackLayout>
                         <Label
