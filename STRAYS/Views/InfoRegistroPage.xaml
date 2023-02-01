@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="STRAYS.Views.InfoRegistroPage"
+             Title="InfoRegistroPage"
+             Shell.NavBarIsVisible="false"
+             xmlns:models="clr-namespace:STRAYS.Models">
+
+    <ScrollView>
+        <Grid RowDefinitions="50,*">
+            <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*">
+                <BoxView Color="{StaticResource colorPrincipal}" Grid.ColumnSpan="7" CornerRadius="0,0,10,10"/>
+                <Image 
+                        Grid.Column="0"
+                        Source="info.png"
+                        Style="{StaticResource iconosTabBar}"/>
+                <ImageButton 
+                        Grid.Column="6" 
+                        Source="atras.png"
+                        Clicked="Cancelar"
+                        Style="{StaticResource iconosTabBar}"/>
+            </Grid>
+            <VerticalStackLayout Grid.Column="0" Grid.Row="1">
+                <Label
+                        Style="{StaticResource titulos}"
+                        Text="Registrar nuevo encuentro"/>
+                <Grid HeightRequest="400" RowDefinitions="*">
+                    <Image
+                        Source="empty.png"
+                        Aspect="Fill"
+                        Grid.Row="0"
+                        />
+                    <Image
+                        Grid.Row="0"
+                        x:Name="imagen" 
+                        Source="{Binding Imagen}"
+                        Aspect="Fill"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,3*" RowDefinitions="45,45,45,45" Padding="15" RowSpacing="10">
+                    <Label 
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Titulo:"
+                            />
+                    <Label 
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Sexo:"
+                            />
+                    
+                    <Label 
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Raza:"
+                            />
+                    <Label 
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Ubicacion:"
+                            />
+                    <Entry  
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            x:Name="txtTitulo"
+                            Placeholder="Titulo del encuentro"
+                            HeightRequest="50" 
+                            MaxLength="30"
+                            Text="{Binding Titulo}"/>
+
+                    <Entry 
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            x:Name="txtSexo"
+                            Placeholder="Femenino o Masculino"
+                            HeightRequest="50" 
+                            MaxLength="10"
+                            Text="{Binding Sexo}"
+                            />
+                    
+                    <Entry 
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            x:Name="txtRaza"
+                            Placeholder="Raza del animalito"
+                            HeightRequest="50" 
+                            MaxLength="30"
+                            Text="{Binding Raza}"
+                            />
+                    <Entry 
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            x:Name="txtUbicacion "
+                            Placeholder="Sector donde fue encontrado"
+                            HeightRequest="50" 
+                            MaxLength="30"
+                            Text="{Binding Ubicacion}"
+                            />
+                </Grid>
+                <Label
+                        Style="{StaticResource textoCuerpo}"
+                        Padding="15"
+                        Text="Descripción:"/>
+                <Grid ColumnDefinitions="15,*,15" RowDefinitions="100">
+                    <Editor 
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        x:Name="txtDescripcion"
+                        Placeholder="Introduzca una descripción del animalito (máx. 200 caracteres)"
+                        HeightRequest="100" 
+                        MaxLength="200"
+                        IsSpellCheckEnabled="False"
+                        Text="{Binding Descripcion}"
+                        />
+                </Grid>
+
+                <Grid ColumnDefinitions="60,*,60" RowDefinitions="70" Padding="15">
+                    <ImageButton     
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Style="{StaticResource botonGuardarImagen}" 
+                        HeightRequest="70"
+                        WidthRequest="70"
+                        CornerRadius="25"
+                        Padding="10"
+                        Clicked="PickAndShow"
+                             />
+                    <Button     
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="Guardar"
+                        Style="{StaticResource botonSecundario}" 
+                        WidthRequest="150"
+                        FontSize="14"
+                        Clicked="SaveButton_Clicked"
+                             />
+                    <ImageButton     
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Style="{StaticResource botonEliminar}" 
+                        Clicked="DeleteButton_Clicked"
+                        HeightRequest="70"
+                        WidthRequest="70"
+                        CornerRadius="25"
+                        Padding="10"
+                             />
+                </Grid>
+                <BoxView
+                    Margin="10"
+                    Color="{StaticResource colorPrincipal}"
+                    HeightRequest="2"
+                    />
+                <Label
+                    Style="{StaticResource textoCuerpo}"
+                    Text="Si no tienes foto del animalito encontrado, puedes generar una imagen con la descripción detallada gracias a la Inteligencia Artificial de OpenAI"
+                    Margin="10"
+                    FontFamily="Roboto-Light"
+                    HorizontalTextAlignment="Center"
+                    Padding="15"
+                    />
+                <Editor
+                    Placeholder="Descripción del animalito"
+                    x:Name="descAPI"
+                    Margin="10"
+                    HeightRequest="100"
+                    MaxLength="100"
+                    />
+                <Button
+                    x:Name="btngenerar"
+                    Style="{StaticResource botonPrimario}"
+                    HorizontalOptions="Center"
+                    Text="Generar"
+                    Clicked="generarImg"
+                    Pressed="cambiarColorPressed"
+                    Released="cambiarColorReleased"
+                    />
+                <Grid HeightRequest="190" RowDefinitions="20,*,20" Margin="0,15,0,0">
+                    <BoxView
+                            Color="{StaticResource colorPrincipal}"
+                            Grid.Row="0"
+                            Grid.RowSpan="4"
+                        />
+                    <VerticalStackLayout Grid.Row="1">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="¿No funciona la API?"
+                            Style="{StaticResource textoCuerpo}"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            />
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="prueba cambiando la llave de la API:"
+                            Style="{StaticResource textoCuerpo}"
+                            TextColor="White"
+                            Margin="0,5,0,0"
+                            />
+                        <HorizontalStackLayout Margin="15,15,15,0" HorizontalOptions="Center">
+                            <Entry
+                                x:Name="llaveapi"
+                                BackgroundColor="White"
+                                Margin="0,0,10,0"
+                                HeightRequest="40"
+                                WidthRequest="250"
+                                Placeholder="Copia y pega la llave"
+                            />
+                            <ImageButton
+                                Source="refresh.png"
+                                Style="{StaticResource botonGuardarImagen}" 
+                                BackgroundColor="White"
+                                HeightRequest="70"
+                                WidthRequest="70"
+                                CornerRadius="25"
+                                Padding="10"
+                                Clicked="actualizarLlaveAPI"
+                                BorderWidth="0"
+                                />
+                        </HorizontalStackLayout>
+                        <Label
+                            x:Name="mensajeLlave"
+                            IsVisible="False"
+                            Text="Llave actualizada"
+                            Style="{StaticResource textoCuerpo}"
+                            HorizontalOptions="Center"
+                            Margin="0,2,0,0"
+                            TextColor="White"
+                            FontSize="10"
+                            />
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
