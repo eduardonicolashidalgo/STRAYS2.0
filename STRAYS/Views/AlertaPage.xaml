@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="STRAYS.Views.AlertaPage"
+             xmlns:models="clr-namespace:STRAYS.Models"
+             xmlns:viewmodel="clr-namespace:STRAYS.ViewModels"
+             x:DataType="viewmodel:AlertaViewModel"
+             Title="AlertaPage"
+             Shell.NavBarIsVisible="False">
+    
+    <Grid RowDefinitions="60,*,60">
+        <BoxView
+            Grid.Row="0"
+            HeightRequest="60"
+            Color="{StaticResource colorPrincipal}"/>
+        <Button
+            Grid.Row="0"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="STRAYS"
+            TextColor="White"
+            FontSize="24"
+            FontFamily="Roboto-Bold"
+            BackgroundColor="{StaticResource colorPrincipal}"
+            Clicked="irArriba"/>
+        <CollectionView x:Name="lista"
+                        ItemsSource="{Binding Mascota}"
+                        Margin="20"
+                        SelectionMode="Single"
+                        SelectionChanged="notesCollection_SelectionChanged"
+                        Grid.Row="1">
+
+            <!-- Designate how the collection of items are laid out -->
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="30" />
+            </CollectionView.ItemsLayout>
+
+            <!-- Define the appearance of each item in the list -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:AlertaModel">
+                    <StackLayout>
+                        <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="400" />
+                        <BoxView Color="White" HeightRequest="10"/>
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="60,25,25">
+                            <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                                <Label 
+                                        Text="{Binding Titulo}"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        FontSize="30"
+                                        FontFamily="Bold"
+                                        Style="{StaticResource titulos}"
+                                        Padding="0"/>
+                                <Label 
+                                        Text="{Binding Date}"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Start"
+                                        FontFamily="Roboto-Light"
+                                        FontSize="10"
+                                        Style="{StaticResource textoCuerpo}"/>
+                            </StackLayout>
+                            <HorizontalStackLayout Grid.Column="0" Grid.Row="1">
+                                <Label Text="Sexo:" Style="{StaticResource textoCuerpoTags}"/>
+                                <Label 
+                                        Text="{Binding Sexo}"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Style="{StaticResource textoCuerpo}"/>
+                            </HorizontalStackLayout>
+                            
+                            <HorizontalStackLayout Grid.Column="0" Grid.Row="2">
+                                <Label Text="Raza:" Style="{StaticResource textoCuerpoTags}"/>
+                                <Label 
+                                        Text="{Binding Raza}"
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Style="{StaticResource textoCuerpo}"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Column="1" Grid.Row="2" HorizontalOptions="End">
+                                <Label Text="Ubicacion:" Grid.Column="2" Grid.Row="1" Style="{StaticResource textoCuerpoTags}"/>
+                                <Label 
+                                        Text="{Binding Ubicacion}"
+                                        Grid.Column="3"
+                                        Grid.Row="1"
+                                        Style="{StaticResource textoCuerpo}"/>
+                            </HorizontalStackLayout>
+
+                        </Grid>
+                        <Label Text="Descripción:" Style="{StaticResource textoCuerpoTags}"/>
+                        <Label Text="{Binding Descripcion}" Style="{StaticResource textoCuerpo}"/>
+                        <BoxView Color="White" HeightRequest="10"/>
+                        <BoxView Color="#808080" HeightRequest="1"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*">
+            <BoxView Color="{StaticResource colorPrincipal}" Grid.ColumnSpan="7" CornerRadius="0,0,10,10"/>
+            <ImageButton 
+                Grid.Column="0" 
+                Source="burgermenu.png"
+                Command="{Binding AbrirFlyoutCommand}"
+                Style="{StaticResource iconosTabBar}"
+                Margin="10"/>
+            <Image 
+                Grid.Column="3" 
+                Source="dog.png"
+                Style="{StaticResource iconosTabBar}"/>
+            <ImageButton 
+                Source="add.png"
+                Grid.Column="6"    
+                Style="{StaticResource iconosTabBar}" 
+                Command="{Binding GoToPaeRegistroPageCommand}"
+                Margin="10"/>
+            <!--<ImageButton 
+                Grid.Column="5" 
+                Source="info.png"
+                Clicked="GoToInfoPage"
+                Style="{StaticResource iconosTabBar}"/>
+            <ImageButton 
+                Grid.Column="6" 
+                Source="alerta.png"
+                Clicked="GoToAlertaPage"
+                Style="{StaticResource iconosTabBar}"/>-->
+        </Grid>
+    </Grid>
+</ContentPage>

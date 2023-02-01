@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="STRAYS.Views.AlertaRegistroPage"
+             Shell.NavBarIsVisible="false"
+             xmlns:models="clr-namespace:STRAYS.Models"
+             Title="AlertaRegistroPage">
+    <ScrollView>
+        <Grid RowDefinitions="50,*">
+            <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*">
+                <BoxView Color="{StaticResource colorPrincipal}" Grid.ColumnSpan="7" CornerRadius="0,0,10,10"/>
+                <Image 
+                        Grid.Column="0"
+                        Source="alerta.png"
+                        Style="{StaticResource iconosTabBar}"/>
+                <ImageButton 
+                        Grid.Column="6" 
+                        Source="atras.png"
+                        Clicked="Cancelar"
+                        Style="{StaticResource iconosTabBar}"/>
+            </Grid>
+            <VerticalStackLayout Grid.Column="0" Grid.Row="1">
+                <Label
+                        Style="{StaticResource titulos}"
+                        Text="Registrar nueva alerta"/>
+                <Grid HeightRequest="400" RowDefinitions="*">
+                    <Image
+                        Source="empty.png"
+                        Aspect="Fill"
+                        Grid.Row="0"
+                        />
+                    <Image
+                        Grid.Row="0"
+                        x:Name="imagen" 
+                        Source="{Binding Imagen}"
+                        Aspect="Fill"/>
+                </Grid>
+                <Grid ColumnDefinitions="*,3*" RowDefinitions="45,45,45,45" Padding="15" RowSpacing="10">
+                    <Label 
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Titulo:"
+                            />
+                    <Label 
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Sexo:"
+                            />
+                    
+                    <Label 
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Raza:"
+                            />
+                    <Label 
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Style="{StaticResource textoCuerpo}"
+                            Text="Ubicación:"
+                            />
+                   
+                    <Entry  
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            x:Name="txtTitulo"
+                            Placeholder="Titulo de la alerta"
+                            HeightRequest="50" 
+                            MaxLength="30"
+                            Text="{Binding Titulo}"/>
+
+                    <Entry 
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            x:Name="txtSexo"
+                            Placeholder="Femenino o Masculino"
+                            HeightRequest="50" 
+                            MaxLength="10"
+                            Text="{Binding Sexo}"
+                            />
+                    
+                    <Entry 
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            x:Name="txtRaza"
+                            Placeholder="Raza del animalito"
+                            HeightRequest="50" 
+                            MaxLength="30"
+                            Text="{Binding Raza}"
+                            />
+                    <Entry 
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            x:Name="txtUbicacion"
+                            Placeholder="Sector donde se perdió"
+                            HeightRequest="50" 
+                            MaxLength="30"
+                            Text="{Binding Ubicacion}"
+                            />
+                </Grid>
+                <Label
+                        Style="{StaticResource textoCuerpo}"
+                        Padding="15"
+                        Text="Descripción:"/>
+                <Grid ColumnDefinitions="15,*,15" RowDefinitions="100">
+                    <Editor 
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        x:Name="txtDescripcion"
+                        Placeholder="Introduzca una descripción del animalito (máx. 200 caracteres)"
+                        HeightRequest="100" 
+                        MaxLength="200"
+                        IsSpellCheckEnabled="False"
+                        Text="{Binding Descripcion}"
+                        />
+                </Grid>
+
+                <Grid ColumnDefinitions="60,*,60" RowDefinitions="70" Padding="15">
+                    <ImageButton     
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Style="{StaticResource botonGuardarImagen}" 
+                        HeightRequest="70"
+                        WidthRequest="70"
+                        CornerRadius="25"
+                        Padding="10"
+                        Clicked="PickAndShow"
+                             />
+                    <Button     
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="Guardar"
+                        Style="{StaticResource botonSecundario}" 
+                        WidthRequest="150"
+                        FontSize="14"
+                        Clicked="SaveButton_Clicked"
+                             />
+                    <ImageButton     
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Style="{StaticResource botonEliminar}" 
+                        Clicked="DeleteButton_Clicked"
+                        HeightRequest="70"
+                        WidthRequest="70"
+                        CornerRadius="25"
+                        Padding="10"
+                             />
+                </Grid>
+                <BoxView
+                    Margin="10"
+                    Color="{StaticResource colorPrincipal}"
+                    HeightRequest="2"
+                    />
+
+                   
+              
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
