@@ -1,5 +1,4 @@
 using STRAYS.Models;
-using static Android.Content.ClipData;
 namespace STRAYS.Views;
 
 [QueryProperty(nameof(ItemId), nameof(ItemId))]
@@ -86,7 +85,7 @@ public partial class AlertaRegistroPage : ContentPage
                 aux.Raza,
                 aux.Ubicacion,
                 aux.Descripcion,
-                img);
+                aux.Imagen);
             await Shell.Current.GoToAsync("..");
         }
     }

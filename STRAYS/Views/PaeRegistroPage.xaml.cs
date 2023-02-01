@@ -87,7 +87,7 @@ public partial class PaeRegistroPage : ContentPage
                 aux.Raza,
                 aux.Tamano,
                 aux.Descripcion,
-                img);
+                aux.Imagen);
             await Shell.Current.GoToAsync("..");
         }
     }

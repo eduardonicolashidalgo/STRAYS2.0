@@ -19,11 +19,11 @@
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:InfoPage}" />
         </Tab>
-    </FlyoutItem>
+    </FlyoutItem>-->
     <FlyoutItem Title="Alertas"
                 Icon="alertaP.png">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:AlertaPage}" />
         </Tab>
-    </FlyoutItem>-->
+    </FlyoutItem>
 </Shell>

@@ -23,6 +23,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<ImageGenerator>(s => ActivatorUtilities.CreateInstance<ImageGenerator>(s));
 		builder.Services.AddSingleton<PaePage>();
         builder.Services.AddSingleton<PaeViewModel>();
+        builder.Services.AddSingleton<AlertaPage>();
+        builder.Services.AddSingleton<AlertaViewModel>();
         return builder.Build();
 	}
 }
