@@ -120,16 +120,6 @@
                 Style="{StaticResource iconosTabBar}" 
                 Command="{Binding GoToPaeRegistroPageCommand}"
                 Margin="10"/>
-            <!--<ImageButton 
-                Grid.Column="5" 
-                Source="info.png"
-                Clicked="GoToInfoPage"
-                Style="{StaticResource iconosTabBar}"/>
-            <ImageButton 
-                Grid.Column="6" 
-                Source="alerta.png"
-                Clicked="GoToAlertaPage"
-                Style="{StaticResource iconosTabBar}"/>-->
         </Grid>
     </Grid>
 </ContentPage>

@@ -20,10 +20,10 @@
             <ShellContent ContentTemplate="{DataTemplate views:InfoPage}" />
         </Tab>
     </FlyoutItem>
-    <!--<FlyoutItem Title="Alertas"
+    <FlyoutItem Title="Alertas"
                 Icon="alertaP.png">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:AlertaPage}" />
         </Tab>
-    </FlyoutItem>-->
+    </FlyoutItem>
 </Shell>

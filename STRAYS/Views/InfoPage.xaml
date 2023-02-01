@@ -104,7 +104,7 @@
                 Margin="10"/>
             <Image 
                 Grid.Column="3" 
-                Source="dog.png"
+                Source="info.png"
                 Style="{StaticResource iconosTabBar}"/>
             <ImageButton 
                 Source="add.png"
@@ -112,16 +112,6 @@
                 Style="{StaticResource iconosTabBar}" 
                 Command="{Binding GoToInfoRegistroPageCommand}"
                 Margin="10"/>
-            <!--<ImageButton 
-                Grid.Column="5" 
-                Source="info.png"
-                Clicked="GoToInfoPage"
-                Style="{StaticResource iconosTabBar}"/>
-            <ImageButton 
-                Grid.Column="6" 
-                Source="alerta.png"
-                Clicked="GoToAlertaPage"
-                Style="{StaticResource iconosTabBar}"/>-->
         </Grid>
     </Grid>
 </ContentPage>

@@ -98,7 +98,7 @@ public partial class PaeRegistroPage : ContentPage
     }
 
 
-    public async void generarImg(object sender, EventArgs e)
+    /*public async void generarImg(object sender, EventArgs e)
     {
         input inp = new input() { size = "256x256", n = 1 };
         inp.prompt = descAPI.Text;
@@ -131,5 +131,5 @@ public partial class PaeRegistroPage : ContentPage
     private void cambiarColorReleased(object sender, EventArgs e)
     {
         btngenerar.BackgroundColor = Color.FromArgb("#8B3C7F"); ;
-    }
+    }*/
 }

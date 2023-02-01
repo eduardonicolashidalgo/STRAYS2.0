@@ -78,7 +78,7 @@ public partial class InfoRegistroPage : ContentPage
                 aux.Raza,
                 aux.Ubicacion,
                 aux.Descripcion,
-                img);
+                aux.Imagen);
             await Shell.Current.GoToAsync("..");
         }
     }
