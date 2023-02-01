@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="STRAYS.Views.PaePage"
+             x:Class="STRAYS.Views.InfoPage"
              xmlns:models="clr-namespace:STRAYS.Models"
              xmlns:viewmodel="clr-namespace:STRAYS.ViewModels"
-             x:DataType="viewmodel:PaeViewModel"
-             Title="PaePage"
+             x:DataType="viewmodel:InfoViewModel"
+             Title="InfoPage"
              Shell.NavBarIsVisible="False">
 
     <Grid RowDefinitions="60,*,60">
@@ -37,14 +37,14 @@
 
             <!-- Define the appearance of each item in the list -->
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:PaeModel">
+                <DataTemplate x:DataType="models:InfoModel">
                     <StackLayout>
                         <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="400" />
                         <BoxView Color="White" HeightRequest="10"/>
                         <Grid ColumnDefinitions="*,*" RowDefinitions="60,25,25">
                             <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
                                 <Label 
-                                        Text="{Binding Nombre}"
+                                        Text="{Binding Titulo}"
                                         VerticalOptions="Center"
                                         HorizontalOptions="Start"
                                         FontSize="30"
@@ -67,15 +67,7 @@
                                         Grid.Row="0"
                                         Style="{StaticResource textoCuerpo}"/>
                             </HorizontalStackLayout>
-                            <HorizontalStackLayout Grid.Column="1" Grid.Row="1" HorizontalOptions="End">
-                                <Label Text="Edad:" Style="{StaticResource textoCuerpoTags}"/>
-                                <Label 
-                                        Text="{Binding Edad}"
-                                        Grid.Column="3"
-                                        Grid.Row="0"
-                                        Style="{StaticResource textoCuerpo}"/>
-                                <Label Text=" meses" Style="{StaticResource textoCuerpo}"/>
-                            </HorizontalStackLayout>
+                         
                             <HorizontalStackLayout Grid.Column="0" Grid.Row="2">
                                 <Label Text="Raza:" Style="{StaticResource textoCuerpoTags}"/>
                                 <Label 
@@ -85,9 +77,9 @@
                                         Style="{StaticResource textoCuerpo}"/>
                             </HorizontalStackLayout>
                             <HorizontalStackLayout Grid.Column="1" Grid.Row="2" HorizontalOptions="End">
-                                <Label Text="Tamaño:" Grid.Column="2" Grid.Row="1" Style="{StaticResource textoCuerpoTags}"/>
+                                <Label Text="Ubicacion:" Grid.Column="2" Grid.Row="1" Style="{StaticResource textoCuerpoTags}"/>
                                 <Label 
-                                        Text="{Binding Tamano}"
+                                        Text="{Binding Ubicacion}"
                                         Grid.Column="3"
                                         Grid.Row="1"
                                         Style="{StaticResource textoCuerpo}"/>
@@ -112,13 +104,13 @@
                 Margin="10"/>
             <Image 
                 Grid.Column="3" 
-                Source="dog.png"
+                Source="info.png"
                 Style="{StaticResource iconosTabBar}"/>
             <ImageButton 
                 Source="add.png"
                 Grid.Column="6"    
                 Style="{StaticResource iconosTabBar}" 
-                Command="{Binding GoToPaeRegistroPageCommand}"
+                Command="{Binding GoToInfoRegistroPageCommand}"
                 Margin="10"/>
         </Grid>
     </Grid>

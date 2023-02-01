@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="STRAYS.Views.PaeRegistroPage"
-             Title="PaeRegistroPage"
+             x:Class="STRAYS.Views.InfoRegistroPage"
+             Title="InfoRegistroPage"
              Shell.NavBarIsVisible="false"
              xmlns:models="clr-namespace:STRAYS.Models">
-    
+
     <ScrollView>
         <Grid RowDefinitions="50,*">
             <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*">
                 <BoxView Color="{StaticResource colorPrincipal}" Grid.ColumnSpan="7" CornerRadius="0,0,10,10"/>
                 <Image 
                         Grid.Column="0"
-                        Source="dog.png"
+                        Source="info.png"
                         Style="{StaticResource iconosTabBar}"/>
                 <ImageButton 
                         Grid.Column="6" 
@@ -23,7 +23,7 @@
             <VerticalStackLayout Grid.Column="0" Grid.Row="1">
                 <Label
                         Style="{StaticResource titulos}"
-                        Text="Registrar nuevo animalito"/>
+                        Text="Registrar nuevo encuentro"/>
                 <Grid HeightRequest="400" RowDefinitions="*">
                     <Image
                         Source="empty.png"
@@ -36,12 +36,12 @@
                         Source="{Binding Imagen}"
                         Aspect="Fill"/>
                 </Grid>
-                <Grid ColumnDefinitions="*,3*" RowDefinitions="45,45,45,45,45" Padding="15" RowSpacing="10">
+                <Grid ColumnDefinitions="*,3*" RowDefinitions="45,45,45,45" Padding="15" RowSpacing="10">
                     <Label 
                             Grid.Row="0"
                             Grid.Column="0"
                             Style="{StaticResource textoCuerpo}"
-                            Text="Nombre:"
+                            Text="Titulo:"
                             />
                     <Label 
                             Grid.Row="1"
@@ -49,33 +49,28 @@
                             Style="{StaticResource textoCuerpo}"
                             Text="Sexo:"
                             />
+                    
                     <Label 
                             Grid.Row="2"
-                            Grid.Column="0"
-                            Style="{StaticResource textoCuerpo}"
-                            Text="Edad:"
-                            />
-                    <Label 
-                            Grid.Row="3"
                             Grid.Column="0"
                             Style="{StaticResource textoCuerpo}"
                             Text="Raza:"
                             />
                     <Label 
-                            Grid.Row="4"
+                            Grid.Row="3"
                             Grid.Column="0"
                             Style="{StaticResource textoCuerpo}"
-                            Text="Tamaño:"
+                            Text="Ubicacion:"
                             />
                     <Entry  
                             Grid.Row="0"
                             Grid.Column="1"
-                            x:Name="txtNombre"
-                            Placeholder="Nombre del animalito"
+                            x:Name="txtTitulo"
+                            Placeholder="Titulo del encuentro"
                             HeightRequest="50" 
                             MaxLength="30"
-                            Text="{Binding Nombre}"/>
-                    
+                            Text="{Binding Titulo}"/>
+
                     <Entry 
                             Grid.Row="1"
                             Grid.Column="1"
@@ -85,40 +80,9 @@
                             MaxLength="10"
                             Text="{Binding Sexo}"
                             />
-                    <HorizontalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="Center">
-                        <Grid WidthRequest="40">
-                            <BoxView 
-                                WidthRequest="35"
-                                HeightRequest="30"
-                                CornerRadius="15"
-                                Color="{StaticResource colorPrincipal}"
-                            />
-                            <Label 
-                                Text="{Binding Source={x:Reference stepperEdad}, Path=Value, StringFormat='{0:F0}'}"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                Grid.Column="0"
-                                Style="{StaticResource textoCuerpo}"
-                                FontFamily="Roboto-Bold"
-                                TextColor="White"
-                                />
-                        </Grid>
-                        <BoxView 
-                            WidthRequest="15"
-                            Color="White"
-                            />
-                        <Stepper
-                                x:Name="stepperEdad"
-                                HeightRequest="50" 
-                                Minimum="1"
-                                Maximum="20"
-                                Increment="1"
-                                HorizontalOptions="Center"
-                                Value="{Binding Edad}"
-                                />
-                    </HorizontalStackLayout>
+                    
                     <Entry 
-                            Grid.Row="3"
+                            Grid.Row="2"
                             Grid.Column="1"
                             x:Name="txtRaza"
                             Placeholder="Raza del animalito"
@@ -127,13 +91,13 @@
                             Text="{Binding Raza}"
                             />
                     <Entry 
-                            Grid.Row="4"
+                            Grid.Row="3"
                             Grid.Column="1"
-                            x:Name="txtTamano"
-                            Placeholder="Pequeño, Mediano, o Grande"
+                            x:Name="txtUbicacion "
+                            Placeholder="Sector donde fue encontrado"
                             HeightRequest="50" 
                             MaxLength="30"
-                            Text="{Binding Tamano}"
+                            Text="{Binding Ubicacion}"
                             />
                 </Grid>
                 <Label
@@ -189,6 +153,84 @@
                     Color="{StaticResource colorPrincipal}"
                     HeightRequest="2"
                     />
+                <Label
+                    Style="{StaticResource textoCuerpo}"
+                    Text="Si no tienes foto del animalito encontrado, puedes generar una imagen con la descripción detallada gracias a la Inteligencia Artificial de OpenAI"
+                    Margin="10"
+                    FontFamily="Roboto-Light"
+                    HorizontalTextAlignment="Center"
+                    Padding="15"
+                    />
+                <Editor
+                    Placeholder="Descripción del animalito"
+                    x:Name="descAPI"
+                    Margin="10"
+                    HeightRequest="100"
+                    MaxLength="100"
+                    />
+                <Button
+                    x:Name="btngenerar"
+                    Style="{StaticResource botonPrimario}"
+                    HorizontalOptions="Center"
+                    Text="Generar"
+                    Clicked="generarImg"
+                    Pressed="cambiarColorPressed"
+                    Released="cambiarColorReleased"
+                    />
+                <Grid HeightRequest="190" RowDefinitions="20,*,20" Margin="0,15,0,0">
+                    <BoxView
+                            Color="{StaticResource colorPrincipal}"
+                            Grid.Row="0"
+                            Grid.RowSpan="4"
+                        />
+                    <VerticalStackLayout Grid.Row="1">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="¿No funciona la API?"
+                            Style="{StaticResource textoCuerpo}"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            />
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="prueba cambiando la llave de la API:"
+                            Style="{StaticResource textoCuerpo}"
+                            TextColor="White"
+                            Margin="0,5,0,0"
+                            />
+                        <HorizontalStackLayout Margin="15,15,15,0" HorizontalOptions="Center">
+                            <Entry
+                                x:Name="llaveapi"
+                                BackgroundColor="White"
+                                Margin="0,0,10,0"
+                                HeightRequest="40"
+                                WidthRequest="250"
+                                Placeholder="Copia y pega la llave"
+                            />
+                            <ImageButton
+                                Source="refresh.png"
+                                Style="{StaticResource botonGuardarImagen}" 
+                                BackgroundColor="White"
+                                HeightRequest="70"
+                                WidthRequest="70"
+                                CornerRadius="25"
+                                Padding="10"
+                                Clicked="actualizarLlaveAPI"
+                                BorderWidth="0"
+                                />
+                        </HorizontalStackLayout>
+                        <Label
+                            x:Name="mensajeLlave"
+                            IsVisible="False"
+                            Text="Llave actualizada"
+                            Style="{StaticResource textoCuerpo}"
+                            HorizontalOptions="Center"
+                            Margin="0,2,0,0"
+                            TextColor="White"
+                            FontSize="10"
+                            />
+                    </VerticalStackLayout>
+                </Grid>
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

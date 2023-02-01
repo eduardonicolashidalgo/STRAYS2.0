@@ -14,7 +14,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:PaePage}" />
         </Tab>
     </FlyoutItem>
-    <!--<FlyoutItem Title="Encuentros"
+    <FlyoutItem Title="Encuentros"
                 Icon="infoP.png">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:InfoPage}" />
@@ -25,5 +25,5 @@
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:AlertaPage}" />
         </Tab>
-    </FlyoutItem>-->
+    </FlyoutItem>
 </Shell>
